@@ -12,27 +12,28 @@ export default Ember.Controller.extend({
       this.set('numfixS',null);
     },
 
-    calculateValue() {
+    function calculateValue() {
 
       var supplyPower = this.get('psuS').get('supplyPower'); //PT *corresponds with matlab code*
-      console.log(supplyPower);
+      //console.log(supplyPower);
       var supplyVoltage = this.get('psuS').get('supplyVoltage'); //VS
-      console.log(supplyVoltage);
+      //console.log(supplyVoltage);
       var ldrIntRes = this.get('ldrS').get('ldrIntRes'); //RL
-      console.log(ldrIntRes);
+      //console.log(ldrIntRes);
       var jmpIntRes = this.get('jmpS').get('jmpIntRes'); //RJ
-      console.log(jmpIntRes);
+      //console.log(jmpIntRes);
       var wpxIntRes = this.get('wpxS').get('wpxIntRes'); //RI
-      console.log(wpxIntRes);
+      //console.log(wpxIntRes);
       var wpxPower = this.get('wpxS').get('wpxPower'); //P0
-      console.log(wpxPower);
+      //console.log(wpxPower);
       var numfix = this.get('numfixS');  //N
-      console.log(numfix);
+      //console.log(numfix);
 
       //var nodeVoltages = [supplyVoltage,];
       //console.log(nodeVoltage);
 
-
+      var result = calc(supplyVoltage,ldrIntRes,jmpIntRes,wpxIntRes,wpxPower,numfix);
+      console.log(result);
 
       function calc(supplyVoltage,ldrIntRes,jmpIntRes,wpxIntRes,wpxPower,numfix) {
 
@@ -61,11 +62,11 @@ export default Ember.Controller.extend({
           };
 
           var nodeVoltage1 = math.eval(expression1, scope);
-          console.log(nodeVoltage1);
+          //console.log(nodeVoltage1);
           nodeVoltages.push(nodeVoltage1);
 
           var nodeVoltage2 = math.eval(expression2, scope);
-          console.log(nodeVoltage2);
+          //console.log(nodeVoltage2);
           nodeVoltages.push(nodeVoltage2);
 
           var A = math.eval("(wpxIntRes^2)*(1/Q+1/wpxIntRes)");
@@ -75,6 +76,8 @@ export default Ember.Controller.extend({
 
           var Isc = math.eval("-(sqrt(B^2-4*A*C)+B)/(2*A)");
 
+          V = nodeVoltage2;
+          Q = V/Isc+jmpIntRes;
 
         };
 
@@ -82,8 +85,7 @@ export default Ember.Controller.extend({
 
     };
 
-      var result = calc(supplyVoltage,ldrIntRes,jmpIntRes,wpxIntRes,wpxPower,numfix);
-      console.log(result);
+
     }
   }
 });
