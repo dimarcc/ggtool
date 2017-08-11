@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import math from 'npm:mathjs';
 
 export default Ember.Route.extend({
   model() {
