@@ -15,19 +15,19 @@ export default Ember.Controller.extend({
     calculateValue() {
 
       var supplyPower = this.get('psuS').get('supplyPower'); //PT *corresponds with matlab code*
-      console.log(supplyPower);
+      console.log('supplyPower', supplyPower);
       var supplyVoltage = this.get('psuS').get('supplyVoltage'); //VS
-      console.log(supplyVoltage);
+      console.log('supplyVoltage', supplyVoltage);
       var ldrIntRes = this.get('ldrS').get('ldrIntRes'); //RL
-      console.log(ldrIntRes);
+      console.log('ldrIntRes', ldrIntRes);
       var jmpIntRes = this.get('jmpS').get('jmpIntRes'); //RJ
-      console.log(jmpIntRes);
+      console.log('jmpIntRes', jmpIntRes);
       var wpxIntRes = this.get('wpxS').get('wpxIntRes'); //RI
-      console.log(wpxIntRes);
+      console.log('wpxIntRes',wpxIntRes);
       var wpxPower = this.get('wpxS').get('wpxPower'); //P0
-      console.log(wpxPower);
+      console.log('wpxPower', wpxPower);
       var numfix = this.get('numfixS');  //N
-      console.log(numfix);
+      console.log('numfix', numfix);
 
       //var nodeVoltages = [supplyVoltage,];
       //console.log(nodeVoltage);
@@ -68,12 +68,12 @@ export default Ember.Controller.extend({
           console.log(nodeVoltage2);
           nodeVoltages.push(nodeVoltage2);
 
-          var A = math.eval("(wpxIntRes^2)*(1/Q+1/wpxIntRes)");
-          var B = math.eval("(V/Q)*wpxIntRes");
-          var C = math.eval("wpxPower");
-          var D = math.eval("B^2-4*A*C");
+          var A = math.eval("(wpxIntRes^2)*(1/Q+1/wpxIntRes)", {wpxIntRes, Q});
+          var B = math.eval("(V/Q)*wpxIntRes", {V, Q, wpxIntRes});
+          var C = math.eval("wpxPower", {wpxPower});
+          var D = math.eval("B^2-4*A*C", {B, A, C});
 
-          var Isc = math.eval("-(sqrt(B^2-4*A*C)+B)/(2*A)");
+          var Isc = math.eval("-(sqrt(B^2-4*A*C)+B)/(2*A)", {A, B, C});
 
 
         };
