@@ -1,3 +1,5 @@
+<!--user prompts-->
+
 <div class="row">
   <br>
   <div class="ui header">Let's find the right product combination for your needs...</div>
@@ -9,6 +11,8 @@
   <p>Please select an item from each drop-down and hit that "calculate" button!</p>
   <br>
 </div>
+
+<!--dropdown menus-->
 
 <div class="ui stackable six column grid">
 
@@ -68,14 +72,18 @@
     {{/ui-dropdown}}
   </div>
 
+  <!--user input for # of fixtures-->
+
   <div class="column">
     <div class="ui fluid input">
       {{input type="text" name="numfix" value=numfixS placeholder="# of fixtures?"}}
     </div>
   </div>
 
+  <!--calculate button-->
+
   <div class="column">
-    <button class="ui fluid button primary" {{action 'calculateValue'}}>
+    <button class="ui fluid button primary" {{action 'calculateValue'}} onClick="location.href='output'">
       Calculate
     </button>
   </div>
@@ -83,6 +91,8 @@
 </div>
 
 <br>
+
+<!--multiple leaders prompt-->
 
 <div class="row">
 

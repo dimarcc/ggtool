@@ -7,7 +7,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('input',{path:'/'});
+  this.route('input');
   this.route('output');
 });
 
