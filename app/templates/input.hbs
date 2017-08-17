@@ -17,21 +17,21 @@
 <div class="ui stackable six column grid">
 
   <div class="column">
-    {{#ui-dropdown class="fluid selection" selected="psu" onChange=(action (mut psuS)) as |execute mapper|}}
+    {{#ui-dropdown name="psudrop" class="fluid selection" selected=psuS onChange=(action (mut psuS)) as |execute mapper|}}
       <div class="default text">Which PSU?</div>
       <i class="dropdown icon"></i>
       <div class="ui menu">
         {{#each model.psus as |psu|}}
-          <div class="item" data-value="{{map-value mapper psu}}">
+          <option class="item" value="{{psu.id}}" data-value="{{map-value mapper psu}}">
             {{psu.name}}
-          </div>
+          </option>
         {{/each}}
       </div>
     {{/ui-dropdown}}
   </div>
 
   <div class="column">
-    {{#ui-dropdown class="fluid selection" selected="ldr" onChange=(action (mut ldrS)) as |execute mapper|}}
+    {{#ui-dropdown id="ldrdrop" class="fluid selection" selected="ldr" onChange=(action (mut ldrS)) as |execute mapper|}}
       <div class="default text">Which LDR?</div>
       <i class="dropdown icon"></i>
       <div class="ui menu">
@@ -45,7 +45,7 @@
   </div>
 
   <div class="column">
-    {{#ui-dropdown class="fluid selection" selected="jmp" onChange=(action (mut jmpS)) as |execute mapper|}}
+    {{#ui-dropdown id="jmpdrop" class="fluid selection" selected="jmp" onChange=(action (mut jmpS)) as |execute mapper|}}
       <div class="default text">Which JMP?</div>
       <i class="dropdown icon"></i>
       <div class="ui menu">
@@ -59,7 +59,7 @@
   </div>
 
   <div class="column">
-    {{#ui-dropdown class="fluid selection" selected="wpx" onChange=(action (mut wpxS)) as |execute mapper|}}
+    {{#ui-dropdown id="wpxdrop" class="fluid selection" selected="wpx" onChange=(action (mut wpxS)) as |execute mapper|}}
       <div class="default text">Which WPX?</div>
       <i class="dropdown icon"></i>
       <div class="ui menu">
@@ -76,14 +76,14 @@
 
   <div class="column">
     <div class="ui fluid input">
-      {{input type="text" name="numfix" value=numfixS placeholder="# of fixtures?"}}
+      {{input id="numfixin" type="text" name="numfix" value=numfixS placeholder="# of fixtures?"}}
     </div>
   </div>
 
   <!--calculate button-->
 
   <div class="column">
-    <button class="ui fluid button primary" {{action 'calculateValue'}} onClick="location.href='output'">
+    <button class="ui fluid button primary" {{action 'calculateValue'}}>
       Calculate
     </button>
   </div>
@@ -98,7 +98,28 @@
 
   <div class="ui slider checkbox">
     <input type="checkbox" name="twoldr">
-    <label>Would you like to use two leader cables?</label>
+    <label>Would you like to use two leader cables? *FUNCTIONALITY OF THIS OPTION HAS NOT BEEN CONFIGURED YET*</label>
   </div>
 
+</div>
+
+<div class="row">
+  <p id="validatetxt"></p>
+</div>
+
+{{#if calculated}}
+<br>
+<div class="row">
+  <h1>Here are your results!</h1>
+</div>
+<br>
+
+{{else}}
+
+{{/if}}
+
+<div class="row">
+  {{ember-chart id="resultChart" height=100}}
+  <br>
+  <br>
 </div>

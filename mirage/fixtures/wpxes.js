@@ -27,24 +27,24 @@ export default [
     id: 5,
     name: 'WPX6-SO',
     wpxIntRes: '.03',
-    wpxPower: '43'
+    wpxPower: '21.5'
   },
   {
     id: 6,
     name: 'WPX6-HO',
     wpxIntRes: '.03',
-    wpxPower: '68'
+    wpxPower: '34'
   },
   {
     id: 7,
     name: 'WPX8-SO',
     wpxIntRes: '.04',
-    wpxPower: '57'
+    wpxPower: '28.5'
   },
   {
     id: 8,
     name: 'WPX8-HO',
     wpxIntRes: '.04',
-    wpxPower: '91'
+    wpxPower: '45.5'
   }
 ];
