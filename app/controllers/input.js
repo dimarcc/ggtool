@@ -29,23 +29,14 @@ export default Ember.Controller.extend({
 
     calculateValue() {
 
+      this.set('calculated',true);
+      
 //checking for and defining static variables for the calculation
 
-      var psuchoice = this.get('psudrop.selected');
-
-      console.log(psuchoice);
-
-      if (typeof psuchoice === 'undefined') {
-        alert('please choose a psu!');
-        return
-      } else {
-        var supplyPower = this.get('psuS').get('supplyPower'); //PT *corresponds with matlab code*
-        //console.log(supplyPower);
-        var supplyVoltage = this.get('psuS').get('supplyVoltage'); //VS
-        //console.log(supplyVoltage);
-      };
-
-
+      var supplyPower = this.get('psuS').get('supplyPower'); //PT *corresponds with matlab code*
+      //console.log(supplyPower);
+      var supplyVoltage = this.get('psuS').get('supplyVoltage'); //VS
+      //console.log(supplyVoltage);
       var ldrIntRes = this.get('ldrS').get('ldrIntRes'); //RL
       //console.log(ldrIntRes);
       var jmpIntRes = this.get('jmpS').get('jmpIntRes'); //RJ
@@ -56,10 +47,6 @@ export default Ember.Controller.extend({
       //console.log(wpxPower);
       var numfix = this.get('numfixS');  //N
       //console.log(numfix);
-
-      if (typeof supplyPower !== "undefined") {
-        alert("Please choose a power supply!");
-      };
 
 //using for loop function to create result array for graphing
 
