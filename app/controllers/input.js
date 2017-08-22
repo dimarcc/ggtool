@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
     wpxS:null,
 
     init() {
-      this._super();
+      this._super(...arguments);
       //console.log('controller init function');
       this.set('numfixS',null);
       this.set('psuS',null);
@@ -30,7 +30,7 @@ export default Ember.Controller.extend({
     calculateValue() {
 
       this.set('calculated',true);
-      
+
 //checking for and defining static variables for the calculation
 
       var supplyPower = this.get('psuS').get('supplyPower'); //PT *corresponds with matlab code*
